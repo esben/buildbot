@@ -136,6 +136,8 @@ class GitHubEventHandler(object):
             'author': payload['sender']['login'],
             'comments': 'GitHub Pull Request #%d (%d commit%s)' % (
                 number, commits, 's' if commits != 1 else ''),
+            'properties': {'pull_request_base':
+                           payload['pull_request']['base']['ref']},
         }
 
         if callable(self._codebase):
